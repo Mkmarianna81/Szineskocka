@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      .container {
+        max-width: 400px;
+        height: 510px;
+        border: 1px solid rgb(58, 49, 49);
+        margin-top: 20px;
+      }
+
+      .kocka {
+        height: 40px;
+      }
+
+      .hatter {
+        height: 300px;
+      }
+
+      .sor {
+        height: 6rem;
+      }
+
+      .kod {
+        height: 3rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container bg-light text-center">
+      <h2 class="mt-4">Melyik színt jelöli?</h2>
+
+      <div
+        id="kod"
+        class="row-2 border border-dark rounded d-flex justify-content-center kocka"
+      ></div>
+
+      <button class="btn btn-secondary mt-3" onclick="ujszin()">
+        új színt kérek
+      </button>
+
+      <div class="bg-dark rounded mt-4 pt-5 hatter">
+        <table class="table" id="racs" onclick="klikk(event)">
+          <tr class="row m-2 sor">
+            <td class="col border border-secondary m-1 sor szin1"></td>
+            <td class="col border border-secondary m-1 sor szin2"></td>
+            <td class="col border border-secondary m-1 sor szin3"></td>
+          </tr>
+          <tr class="row m-2 m-1 sor szin1">
+            <td class="col border border-secondary m-1 sor szin4"></td>
+            <td class="col border border-secondary m-1 sor szin5"></td>
+            <td class="col border border-secondary m-1 sor szin6"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script>
+      
+      let rgbNr
+      let color
+      let szinek = [];
+      window.onload=ujszin
+      function ujszin(){
+        document.querySelector(".kocka").style.backgroundColor = ''
+     
+      const randNr = (min, max) =>
+        Math.floor(Math.random() * (max - min + 1)) + min;
+      rgbNr = randNr;
+      console.log(rgbNr(0, 255));
+   
+      let szin = [];
+
+      let szin1 = [];
+      let szin2 = [];
+      let szin3 = [];
+      let szin4 = [];
+      let szin5 = [];
+      let szin6 = [];
+
+      for (let i = 0; i < 3; i++) {
+        szin1.push(rgbNr(0, 255));
+        szin2.push(rgbNr(0, 255));
+        szin3.push(rgbNr(0, 255));
+        szin4.push(rgbNr(0, 255));
+        szin5.push(rgbNr(0, 255));
+        szin6.push(rgbNr(0, 255));
+      }
+    
+      szin.push(szin1, szin2, szin3, szin4, szin5, szin6);
+      console.log(szin);
+
+      
+      szinek = szin[Math.floor(Math.random() * szin.length)];
+      console.log(szinek);
+
+      
+        document.querySelector(".szin1").style.backgroundColor = `rgb(${szin[0]})`;
+        document.querySelector(".szin2").style.backgroundColor = `rgb(${szin[1]})`;
+        document.querySelector(".szin3").style.backgroundColor = `rgb(${szin[2]})`;
+        document.querySelector(".szin4").style.backgroundColor = `rgb(${szin[3]})`;
+        document.querySelector(".szin5").style.backgroundColor = `rgb(${szin[4]})`;
+        document.querySelector(".szin6").style.backgroundColor = `rgb(${szin[5]})`;
+    
+      color = (document.querySelector(".kocka").innerHTML = `rgb(${szinek.join(", ")})`);
+      console.log(color);
+      
+    }
+      function klikk(e) {
+        e.preventDefault();
+        // console.log(e.target.style.backgroundColor);
+        let szinez = e.target.style.backgroundColor;
+        szinez == color
+          ? (document.querySelector(".kocka").style.backgroundColor = `rgb(${szinek})`)
+          : (document.querySelector(".kocka").style.backgroundColor = "white");
+          
+      }
+     
+    </script>
+  </body>
+</html>
